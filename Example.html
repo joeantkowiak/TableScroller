@@ -1,0 +1,518 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Table Scroller Example</title>
+    <script language="javascript" src="js/jquery-2.2.3.js"></script>
+    <!--<script language="javascript" src="js/tablescroller.js"></script>-->
+    <script language="javascript" src="js/tablescroller.jquery.js"></script>
+    
+    <link type="text/css" scr="/css/bootstrap.css" rel="stylesheet" />
+
+    <style>
+
+        table.data th {
+            background-color: burlywood;
+        }
+
+        table.data th, table.data td {
+            font-family: Verdana;
+            font-size: 16px;
+            padding: 2px;
+            border: 1px solid grey;
+            border-spacing: 0px;
+        }
+
+        .corner-frame {
+            float: left;
+        }
+
+        .scrollable-rows-frame {
+            float: left;
+            overflow: hidden;
+        }
+
+        .scrollable-columns-frame {
+            overflow: hidden;
+        }
+
+        .scrollable-data-frame {
+            overflow: auto;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <table id="ExampleTable" class="data" cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Month</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>10</th>
+                <th>11</th>
+                <th>12</th>
+                <th>13</th>
+                <th>14</th>
+                <th>15</th>
+                <th>16</th>
+                <th>17</th>
+                <th>18</th>
+                <th>19</th>
+                <th>20</th>
+                <th>21</th>
+                <th>22</th>
+                <th>23</th>
+                <th>24</th>
+                <th>25</th>
+                <th>26</th>
+                <th>27</th>
+                <th>28</th>
+                <th>29</th>
+                <th>30</th>
+                <th>31</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>January</td>
+                <td>20001</td>
+                <td>20002</td>
+                <td>20003</td>
+                <td>20004</td>
+                <td>20005</td>
+                <td>20006</td>
+                <td>20007</td>
+                <td>20008</td>
+                <td>20009</td>
+                <td>20010</td>
+                <td>20011</td>
+                <td>20012</td>
+                <td>20013</td>
+                <td>20014</td>
+                <td>20015</td>
+                <td>20016</td>
+                <td>20017</td>
+                <td>20018</td>
+                <td>20019</td>
+                <td>20020</td>
+                <td>20021</td>
+                <td>20022</td>
+                <td>20023</td>
+                <td>20024</td>
+                <td>20025</td>
+                <td>20026</td>
+                <td>20027</td>
+                <td>20028</td>
+                <td>20029</td>
+                <td>20030</td>
+                <td>20031</td>
+            </tr>
+            <tr>
+                <td>February</td>
+                <td>30001</td>
+                <td>30002</td>
+                <td>30003</td>
+                <td>30004</td>
+                <td>30005</td>
+                <td>30006</td>
+                <td>30007</td>
+                <td>30008</td>
+                <td>30009</td>
+                <td>30010</td>
+                <td>30011</td>
+                <td>30012</td>
+                <td>30013</td>
+                <td>30014</td>
+                <td>30015</td>
+                <td>30016</td>
+                <td>30017</td>
+                <td>30018</td>
+                <td>30019</td>
+                <td>30020</td>
+                <td>30021</td>
+                <td>30022</td>
+                <td>30023</td>
+                <td>30024</td>
+                <td>30025</td>
+                <td>30026</td>
+                <td>30027</td>
+                <td>30028</td>
+                <td>30029</td>
+                <td>30030</td>
+                <td>30031</td>
+            </tr>
+            <tr>
+                <td>March</td>
+                <td>20001</td>
+                <td>20002</td>
+                <td>20003</td>
+                <td>20004</td>
+                <td>20005</td>
+                <td>20006</td>
+                <td>20007</td>
+                <td>20008</td>
+                <td>20009</td>
+                <td>20010</td>
+                <td>20011</td>
+                <td>20012</td>
+                <td>20013</td>
+                <td>20014</td>
+                <td>20015</td>
+                <td>20016</td>
+                <td>20017</td>
+                <td>20018</td>
+                <td>20019</td>
+                <td>20020</td>
+                <td>20021</td>
+                <td>20022</td>
+                <td>20023</td>
+                <td>20024</td>
+                <td>20025</td>
+                <td>20026</td>
+                <td>20027</td>
+                <td>20028</td>
+                <td>20029</td>
+                <td>20030</td>
+                <td>20031</td>
+            </tr>
+            <tr>
+                <td>April</td>
+                <td>20001</td>
+                <td>20002</td>
+                <td>20003</td>
+                <td>20004</td>
+                <td>20005</td>
+                <td>20006</td>
+                <td>20007</td>
+                <td>20008</td>
+                <td>20009</td>
+                <td>20010</td>
+                <td>20011</td>
+                <td>20012</td>
+                <td>20013</td>
+                <td>20014</td>
+                <td>20015</td>
+                <td>20016</td>
+                <td>20017</td>
+                <td>20018</td>
+                <td>20019</td>
+                <td>20020</td>
+                <td>20021</td>
+                <td>20022</td>
+                <td>20023</td>
+                <td>20024</td>
+                <td>20025</td>
+                <td>20026</td>
+                <td>20027</td>
+                <td>20028</td>
+                <td>20029</td>
+                <td>20030</td>
+                <td>20031</td>
+            </tr>
+            <tr>
+                <td>May</td>
+                <td>20001</td>
+                <td>20002</td>
+                <td>20003</td>
+                <td>20004</td>
+                <td>20005</td>
+                <td>20006</td>
+                <td>20007</td>
+                <td>20008</td>
+                <td>20009</td>
+                <td>20010</td>
+                <td>20011</td>
+                <td>20012</td>
+                <td>20013</td>
+                <td>20014</td>
+                <td>20015</td>
+                <td>20016</td>
+                <td>20017</td>
+                <td>20018</td>
+                <td>20019</td>
+                <td>20020</td>
+                <td>20021</td>
+                <td>20022</td>
+                <td>20023</td>
+                <td>20024</td>
+                <td>20025</td>
+                <td>20026</td>
+                <td>20027</td>
+                <td>20028</td>
+                <td>20029</td>
+                <td>20030</td>
+                <td>20031</td>
+            </tr>
+            <tr>
+                <td>June</td>
+                <td>20001</td>
+                <td>20002</td>
+                <td>20003</td>
+                <td>20004</td>
+                <td>20005</td>
+                <td>20006</td>
+                <td>20007</td>
+                <td>20008</td>
+                <td>20009</td>
+                <td>20010</td>
+                <td>20011</td>
+                <td>20012</td>
+                <td>20013</td>
+                <td>20014</td>
+                <td>20015</td>
+                <td>20016</td>
+                <td>20017</td>
+                <td>20018</td>
+                <td>20019</td>
+                <td>20020</td>
+                <td>20021</td>
+                <td>20022</td>
+                <td>20023</td>
+                <td>20024</td>
+                <td>20025</td>
+                <td>20026</td>
+                <td>20027</td>
+                <td>20028</td>
+                <td>20029</td>
+                <td>20030</td>
+                <td>20031</td>
+            </tr>
+            <tr>
+                <td>July</td>
+                <td>20001</td>
+                <td>20002</td>
+                <td>20003</td>
+                <td>20004</td>
+                <td>20005</td>
+                <td>20006</td>
+                <td>20007</td>
+                <td>20008</td>
+                <td>20009</td>
+                <td>20010</td>
+                <td>20011</td>
+                <td>20012</td>
+                <td>20013</td>
+                <td>20014</td>
+                <td>20015</td>
+                <td>20016</td>
+                <td>20017</td>
+                <td>20018</td>
+                <td>20019</td>
+                <td>20020</td>
+                <td>20021</td>
+                <td>20022</td>
+                <td>20023</td>
+                <td>20024</td>
+                <td>20025</td>
+                <td>20026</td>
+                <td>20027</td>
+                <td>20028</td>
+                <td>20029</td>
+                <td>20030</td>
+                <td>20031</td>
+            </tr>
+            <tr>
+                <td>August</td>
+                <td>20001</td>
+                <td>20002</td>
+                <td>20003</td>
+                <td>20004</td>
+                <td>20005</td>
+                <td>20006</td>
+                <td>20007</td>
+                <td>20008</td>
+                <td>20009</td>
+                <td>20010</td>
+                <td>20011</td>
+                <td>20012</td>
+                <td>20013</td>
+                <td>20014</td>
+                <td>20015</td>
+                <td>20016</td>
+                <td>20017</td>
+                <td>20018</td>
+                <td>20019</td>
+                <td>20020</td>
+                <td>20021</td>
+                <td>20022</td>
+                <td>20023</td>
+                <td>20024</td>
+                <td>20025</td>
+                <td>20026</td>
+                <td>20027</td>
+                <td>20028</td>
+                <td>20029</td>
+                <td>20030</td>
+                <td>20031</td>
+            </tr>
+            <tr>
+                <td>September</td>
+                <td>20001</td>
+                <td>20002</td>
+                <td>20003</td>
+                <td>20004</td>
+                <td>20005</td>
+                <td>20006</td>
+                <td>20007</td>
+                <td>20008</td>
+                <td>20009</td>
+                <td>20010</td>
+                <td>20011</td>
+                <td>20012</td>
+                <td>20013</td>
+                <td>20014</td>
+                <td>20015</td>
+                <td>20016</td>
+                <td>20017</td>
+                <td>20018</td>
+                <td>20019</td>
+                <td>20020</td>
+                <td>20021</td>
+                <td>20022</td>
+                <td>20023</td>
+                <td>20024</td>
+                <td>20025</td>
+                <td>20026</td>
+                <td>20027</td>
+                <td>20028</td>
+                <td>20029</td>
+                <td>20030</td>
+                <td>20031</td>
+            </tr>
+            <tr>
+                <td>October</td>
+                <td>20001</td>
+                <td>20002</td>
+                <td>20003</td>
+                <td>20004</td>
+                <td>20005</td>
+                <td>20006</td>
+                <td>20007</td>
+                <td>20008</td>
+                <td>20009</td>
+                <td>20010</td>
+                <td>20011</td>
+                <td>20012</td>
+                <td>20013</td>
+                <td>20014</td>
+                <td>20015</td>
+                <td>20016</td>
+                <td>20017</td>
+                <td>20018</td>
+                <td>20019</td>
+                <td>20020</td>
+                <td>20021</td>
+                <td>20022</td>
+                <td>20023</td>
+                <td>20024</td>
+                <td>20025</td>
+                <td>20026</td>
+                <td>20027</td>
+                <td>20028</td>
+                <td>20029</td>
+                <td>20030</td>
+                <td>20031</td>
+            </tr>
+            <tr>
+                <td>November</td>
+                <td>20001</td>
+                <td>20002</td>
+                <td>20003</td>
+                <td>20004</td>
+                <td>20005</td>
+                <td>20006</td>
+                <td>20007</td>
+                <td>20008</td>
+                <td>20009</td>
+                <td>20010</td>
+                <td>20011</td>
+                <td>20012</td>
+                <td>20013</td>
+                <td>20014</td>
+                <td>20015</td>
+                <td>20016</td>
+                <td>20017</td>
+                <td>20018</td>
+                <td>20019</td>
+                <td>20020</td>
+                <td>20021</td>
+                <td>20022</td>
+                <td>20023</td>
+                <td>20024</td>
+                <td>20025</td>
+                <td>20026</td>
+                <td>20027</td>
+                <td>20028</td>
+                <td>20029</td>
+                <td>20030</td>
+                <td>20031</td>
+            </tr>
+            <tr>
+                <td>December</td>
+                <td>20001</td>
+                <td>20002</td>
+                <td>20003</td>
+                <td>20004</td>
+                <td>20005</td>
+                <td>20006</td>
+                <td>20007</td>
+                <td>20008</td>
+                <td>20009</td>
+                <td>20010</td>
+                <td>20011</td>
+                <td>20012</td>
+                <td>20013</td>
+                <td>20014</td>
+                <td>20015</td>
+                <td>20016</td>
+                <td>20017</td>
+                <td>20018</td>
+                <td>20019</td>
+                <td>20020</td>
+                <td>20021</td>
+                <td>20022</td>
+                <td>20023</td>
+                <td>20024</td>
+                <td>20025</td>
+                <td>20026</td>
+                <td>20027</td>
+                <td>20028</td>
+                <td>20029</td>
+                <td>20030</td>
+                <td>20031</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br /><br /><br />
+
+    <div id="scrollableTable"></div>
+    <script type="text/javascript" defer async>
+
+        var options = {
+            width: 500,
+            height: 200,
+            pinnedRows: 1,
+            pinnedCols: 1,
+            container: "#scrollableTable",
+            removeOriginal: false
+        };
+
+        //var scrollableTable = new TableScroller(document.getElementById("ExampleTable"), options);
+
+        $("#ExampleTable").tablescroller(options);
+
+    </script>
+</body>
+</html>
