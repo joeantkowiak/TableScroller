@@ -4,14 +4,14 @@
 <head>
     <meta charset="utf-8" />
     <title>Table Scroller Example</title>
+
     <script language="javascript" src="js/jquery-2.2.3.js"></script>
-    <!--<script language="javascript" src="js/tablescroller.js"></script>-->
+    <script language="javascript" src="js/tablescroller.js"></script>
     <script language="javascript" src="js/tablescroller.jquery.js"></script>
     
-    <link type="text/css" scr="/css/bootstrap.css" rel="stylesheet" />
+    <link type="text/css" href="css/tablescroller.css" rel="stylesheet" />
 
     <style>
-
         table.data th {
             background-color: burlywood;
         }
@@ -23,24 +23,6 @@
             border: 1px solid grey;
             border-spacing: 0px;
         }
-
-        .corner-frame {
-            float: left;
-        }
-
-        .scrollable-rows-frame {
-            float: left;
-            overflow: hidden;
-        }
-
-        .scrollable-columns-frame {
-            overflow: hidden;
-        }
-
-        .scrollable-data-frame {
-            overflow: auto;
-        }
-
     </style>
 
 </head>
@@ -506,10 +488,8 @@
             pinnedRows: 1,
             pinnedCols: 1,
             container: "#scrollableTable",
-            removeOriginal: false
+            removeOriginal: true
         };
-
-        //var scrollableTable = new TableScroller(document.getElementById("ExampleTable"), options);
 
         $("#ExampleTable").tablescroller(options);
 

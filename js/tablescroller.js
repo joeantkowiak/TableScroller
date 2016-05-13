@@ -3,14 +3,27 @@
 //*  TableScroller
 //*  creates a horizontal and vertical scrolling table with pinned row and column headers
 //*
+//*  element - the dom reference to the table that will be converted to a scrollable table
 //*  options:
-//*     selector - the selector for the table that should be converted to a scrollable table
 //*     width - the width of the table
 //*     height - the height of the table
 //*     pinnedRows - the number of pinned rows
 //*     pinnedCols - the number of pinned columns
 //*     container - the container id for the scrollable table
 //*     removeOriginal - indicator for removing the orignal table
+//*
+//*  returns:
+//*     ref {
+//*         options - the original options used to configure the scroller
+//*         corner - dom reference to corner frame
+//*         cornerTable - dom reference to corner table
+//*         scrollableColumns - dom reference to scrollable columns frame
+//*         scrollableColumnsTable - dom reference to scrollable columns table
+//*         scrollableRows - dom reference to scrollable rows frame
+//*         scrollableRowsTable - dom reference to scrollable rows table
+//*         scrollableWindow - dom reference to scrollable data frame
+//*         scrollableWindowTable - dom reference to scrollable data table
+//*     }
 //*
 //********************************************************************************************************************************************
 (function () {
@@ -200,21 +213,21 @@
         }
 
         //adjust scrollable columns window width
-        var scwWidth = getWidth(ref.scrollableColumnsTable);
-        if (scwWidth > getWidth(ref.scrollableWindowTable)) ref.scrollableWindowTable.style.width = getWidth(ref.scrollableColumnsTable) + "px";
-        else ref.scrollableColumnsTable.style.width = getWidth(ref.scrollableWindowTable) + "px";
+        if (ref.scrollableColumnsTable != null) {
+            var scwWidth = getWidth(ref.scrollableColumnsTable);
+            if (scwWidth > getWidth(ref.scrollableWindowTable)) ref.scrollableWindowTable.style.width = getWidth(ref.scrollableColumnsTable) + "px";
+            else ref.scrollableColumnsTable.style.width = getWidth(ref.scrollableWindowTable) + "px";
 
-        //adjust scrollable columns column widths
-        alignTableColumnWidths(ref.scrollableColumnsTable, ref.scrollableWindowTable);
+            //adjust scrollable columns column widths
+            alignTableColumnWidths(ref.scrollableColumnsTable, ref.scrollableWindowTable);
+        }
 
         // adjust width
         var width = ref.scrollableRows != null ? options.width - getWidth(ref.scrollableRows) : options.width;
-        if (ref.scrollableColumns != null) ref.scrollableColumns.style.width = (width - 18) + "px";
         ref.scrollableWindow.style.width = width + "px";
 
         // adjust height
         var height = ref.scrollableColumns != null ? options.height - getHeight(ref.scrollableColumns) : options.height;
-        if (ref.scrollableRows != null) ref.scrollableRows.style.height = (height - 20) + "px";
         ref.scrollableWindow.style.height = height + "px";
 
         // update scrollable column window or scrollable row window as the user scrolls through the scrollable window
@@ -223,8 +236,24 @@
             if (options.pinnedCols > 0) ref.scrollableRows.scrollTop = ref.scrollableWindow.scrollTop;
         });
 
-        var pinnedColsHeight = getHeight(containerDiv) - getHeight(ref.corner);
-        if (pinnedColsHeight < getHeight(ref.scrollableColumns)) ref.scrollableColumns.style.height = pinnedColsHeight;
+        var pinnedColsHeight = ref.corner != null ? getHeight(containerDiv) - getHeight(ref.corner) : 0;
+        if (ref.scrollableColumns != null && pinnedColsHeight != 0 && pinnedColsHeight < getHeight(ref.scrollableColumns)) ref.scrollableColumns.style.height = pinnedColsHeight + "px";
+
+        // adjust scrollable columns frame to scrollable window with scroll bar width
+        if (ref.scrollableColumns != null) {
+            var scrollbarWidth = ref.scrollableWindow.offsetWidth - ref.scrollableWindow.clientWidth;
+            ref.scrollableColumns.style.width = (width - scrollbarWidth) + "px";
+        }
+
+        // adjust scrollable rows frame to scrollable window with scroll bar height
+        if (ref.scrollableRows != null) {
+            var scrollbarHeight = ref.scrollableWindow.offsetHeight - ref.scrollableWindow.clientHeight;
+            ref.scrollableRows.style.height = (height - scrollbarHeight) + "px";
+        }
+
+        if (options.removeOriginal == true) {
+            element.style.display = "none";
+        }
 
         return ref;
     }
